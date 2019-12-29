@@ -226,6 +226,10 @@ namespace ClientApplication
             while (true)
             {
                 var line = Console.ReadLine();
+                if(line == "quit") {
+                    Console.WriteLine("Oh, so soon? bye bye.");
+                    connection.Abort();
+                }
                 await writer.WriteAsync(protocol, new Message(Encoding.UTF8.GetBytes(line)));
                 var result = await reader.ReadAsync(protocol);
 
